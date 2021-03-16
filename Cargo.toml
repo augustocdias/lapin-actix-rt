@@ -1,0 +1,11 @@
+[package]
+name = "lapin-actix-rt"
+version = "0.1.0"
+authors = ["Augusto <augusto@flowciety.de>"]
+edition = "2018"
+
+[dependencies]
+actix-rt = "2.1"
+executor-trait = "2.0"
+async-trait = "0.1"
+lapin = { version = "1.6", default-features = false }
