@@ -1,3 +1,4 @@
+use actix_rt::System;
 // use actix_rt::task::JoinHandle;
 use async_trait::async_trait;
 use executor_trait::{BlockingExecutor, Executor, FullExecutor, LocalExecutorError, Task};
@@ -20,7 +21,7 @@ impl LapinActixRtExt for ConnectionProperties {
     }
 }
 
-/// Dummy object implementing executor-trait common interfaces on top of tokio
+/// Dummy object implementing executor-trait common interfaces on top of actix rt
 #[derive(Debug, Default, Clone)]
 struct ActixRt;
 
@@ -30,6 +31,9 @@ struct ActixRt;
 
 impl OldExecutor for ActixRt {
     fn spawn(&self, f: Pin<Box<dyn Future<Output = ()> + Send>>) -> lapin::Result<()> {
+        if !System::is_set() {
+            let _ = System::new("lapin executor");
+        }
         actix_rt::spawn(f);
         Ok(())
     }

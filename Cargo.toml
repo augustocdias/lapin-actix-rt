@@ -1,6 +1,6 @@
 [package]
 name = "lapin-actix-rt"
-version = "0.1.0-alpha-2"
+version = "0.1.0"
 authors = ["Augusto César Dias<augusto.c.dias@gmail.com>"]
 description = "An Actix Runtime executor for Lapin"
 repository = "https://github.com/augustocdias/lapin-actix-rt"
